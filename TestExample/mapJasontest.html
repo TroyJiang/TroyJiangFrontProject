@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导入中国地图Jason</title>
+	<script src="echarts3.js"></script>
+</head>
+<body>
+	<div id="main" style="width: 100;"></div>
+	<script type="text/javascript">
+		$get('Map/json/china.json',function(chinaJson){
+			echarts.registerMap('china',chinaJson);
+			var chart=echarts.init(document.getElementById("main"));
+			option = {
+				tooltip: {
+				trigger: 'item',
+				formatter: '{b}'
+				},
+		    	series: [
+		        {
+		            name: '中国',
+		            type: 'map',
+		            mapType: 'china',
+		            selectedMode : 'multiple',
+		            label: {
+		                normal: {
+		                    show: true
+		                },
+		                emphasis: {
+		                    show: true
+		                }
+		            },
+		            data:[
+		                {name:'广东', selected:true}
+		            ]
+		        }
+    ]
+};
+		mychart.setOption(option);
+		})
+	</script>
+</body>
+</html>
