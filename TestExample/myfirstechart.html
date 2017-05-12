@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>中国地图</title>
+	<script src="echarts3.js"></script>
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+</head>
+<body>
+	<div id="main" style="width: 800px;height: 800px;"></div>
+	<script type="text/javascript">
+	
+		var mychart=echarts.init(document.getElementById('main'));		
+		option = {
+		tooltip: {
+		trigger: 'item',
+		formatter: '{b}'
+		},
+    	series: [
+        {
+            name: '中国',
+            type: 'map',
+            mapType: 'china',
+            selectedMode : 'multiple',
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[
+                {name:'广东', selected:true}
+            ]
+        }
+    ]
+};
+		mychart.setOption(option);
+	</script>
+</body>
+</html>

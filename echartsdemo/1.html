@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head >
+	<meta charset="UTF-8">
+	<title>地区消防接警情况</title>
+	
+</head>
+<body style="height: 100%; margin: 0">
+	<div id="container" style="height: 100%"></div>
+	<script type="text/javascript" src="../js/echarts.simple.min.js"></script>
+	<script type="text/javascript">
+		var dom=document.getElementById('container');
+		var myChart = echarts.init(dom);
+		var app = {};
+		option = null;
+		var builderJson = {
+		    "长沙": 99,
+		    "杭州": 60,
+		    "北京": 40,
+		    "安徽": 30,
+		    "成都": 38,
+		    "合肥": 9,
+		    "深圳": 50,
+		    "上海": 95
+		  };
+		  option={
+		  	backgroundColor: 'transparent',
+		    tooltip: {},
+		    title: {
+		        text: '地区消防接警情况',
+		        subtext: '总计 ' + builderJson.all,
+		        x: '25%',
+		        textAlign: 'center'
+		    },
+		    xAxis:{
+		    	show:false,
+		    	type: 'value',
+		        max: builderJson.all,
+		        splitLine: {
+		            show: false
+		        }
+		    },
+		    yAxis:{
+		    	type: 'category',
+		        data: Object.keys(builderJson),
+		        axisLabel: {
+		            interval: 0,
+		        },
+		        axisTick : {show: false},
+		        axisLine:{
+		            show:false
+		        },
+		        splitLine: {
+		            show: false
+		        }
+		    },
+		    series:[{//里面的实体部分
+		    	type: 'bar',
+		        barGap: '-100%',
+		        z: 3,
+		        label: {
+		            normal: {
+		                barBorderRadius: 5,
+		                position: 'right',
+		                show: false
+		            }
+		        },
+		        itemStyle: {
+		            normal: {
+		            	color:'lightBlue',
+		                barBorderRadius: 9,
+		                borderWidth:1
+		            }
+		        },
+		        data: Object.keys(builderJson).map(function (key) {
+		            return builderJson[key];
+		        })
+		    },{//外面框部分
+		    	type: 'bar',
+		        silent: true,
+		        zlevel:0,
+		        itemStyle: {
+		            normal: {
+		                barBorderRadius: 9,
+		                color: 'transparent',
+		                borderColor:'gray',
+		                borderWidth:1
+		            }
+		        },
+		        data: Object.keys(builderJson).map(function (key) {
+		            return 100 ;
+		        })
+		    }]
+		  };
+
+		  myChart.setOption(option,true);
+	</script>
+</body>
+</html>

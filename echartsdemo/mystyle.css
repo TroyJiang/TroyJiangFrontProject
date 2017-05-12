@@ -1,0 +1,21 @@
+body {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	background-image: url(./pic/green.jpg);
+}
+h1{
+	align-items: left;
+	text-align: center;
+}
+div#myimg{
+	background-color: white;
+	text-align: center;
+	width: 50%;
+	height: 80%;
+}
+#img1{
+	width: 100%;
+	height: 80%;
+	align-items: center;
+}

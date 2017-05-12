@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>   
+<!-- saved from url=(0013)about:internet -->
+ <meta charset="utf-8" />  
+ <title>First Website</title>
+  <style>
+			.center
+			{		
+			    
+				margin: auto;			
+				width:290px;
+				z-index:100;
+				//position:absolute;
+				//top: 30px; left: 0;right: 0;
+				font-size:150%;
+				text-align:center;
+                color:#fff;			
+				background-color:#00CDCD;
+			}.centerchart
+			{		
+			   width:100%;height:100%;
+				margin: auto;										
+				position:absolute;
+				top: 0; left: 0;right: 0;     
+                				
+			}
+       </style>
+
+
+ </head>
+ <body style="height: 100%; margin: 0">   
+		<div class="center">中国地图</div>
+		<div id="main" class="centerchart"> </div>
+			<script src="echarts3.js"></script>   
+			
+		<script type="text/javascript">
+		 $.getJSON('./china.json', function (data) {
+        echarts.registerMap('china', data);
+        var chart = echarts.init(document.getElementById('main'));
+        chart.setOption({
+            series: [{
+                type: 'map',
+                map: 'china'
+            	}]
+        	});
+    	});
+		 option = {
+    tooltip: {
+        trigger: 'item',
+        formatter: '{b}'
+    },
+    series: [
+        {
+            name: '中国',
+            type: 'map',
+            mapType: 'china',
+            selectedMode : 'multiple',
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[
+                {name:'广东', selected:true}
+            ]
+        }
+    ]
+};
+var curdataindex=0;
+             window.onresize = myChart.resize;
+			 
+			myChart.setOption(option, true);
+			setInterval(function select(){
+			// 高亮当前图形
+			myChart.dispatchAction({
+				type: 'highlight',
+				seriesIndex: 0,
+				dataIndex: curdataindex
+			});
+			
+
+			}, 1000);;
+		 /*
+			myChart = echarts.init(document.getElementById('main'));
+			option = {
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b}: {c} ({d}%)"
+				},
+				
+				series: [
+					{
+						name:'年龄比例',
+						type:'pie',
+						radius: ['50%', '70%'],
+						avoidLabelOverlap: false,
+						color: ['#f2c955', '#00CDCD', '#B0E2FF', '#ec5845'],
+						label: {
+							normal: {
+								show: false,
+								position: 'center'
+							},
+							emphasis: {
+								show: true,
+								textStyle: {
+									fontSize: '30',
+									fontWeight: 'bold'
+								}
+							}
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data:[
+							{value:335, name:'65岁以上'},
+							{value:310, name:'35-65岁'},
+							{value:234, name:'35岁以下'},
+
+						]
+					}
+				]
+			};
+			var curdataindex=0;
+             window.onresize = myChart.resize;
+			 
+			myChart.setOption(option, true);
+			setInterval(function select(){
+			// 高亮当前图形
+			myChart.dispatchAction({
+				type: 'highlight',
+				seriesIndex: 0,
+				dataIndex: curdataindex
+			});
+			
+
+			}, 1000);;
+			
+			*/
+		</script>
+ </div>
+
+ </body>
+ </html>
+                    
